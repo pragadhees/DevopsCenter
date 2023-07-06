@@ -2,7 +2,7 @@ public class BookDetail {
 @AuraEnabled(cacheable=true)
 public static List<Product2> getName(String Name) {
         if (String.isBlank(Name)) {
-        return [SELECT Id, Name, ProductCode, Description, Unit_Cost__c,Total_Cost__c,Quantity__c
+        return [SELECT Id, Name, ProductCode, Description,Total_Cost__c,Quantity__c
         FROM Product2 
         WHERE ProductCode LIKE 'Book-%'
         ];

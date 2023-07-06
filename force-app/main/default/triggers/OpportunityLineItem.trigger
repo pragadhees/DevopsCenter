@@ -4,7 +4,7 @@ trigger OpportunityLineItem on OpportunityLineItem (after insert,after update,af
         LineItemIds.add(oppLineItem.OpportunityId);
         System.debug(oppLineItem.OpportunityId);
     }
-    List<Opportunity> updateBookCount = [SELECT Id, Name, Account.Name, (SELECT Id FROM OpportunityLineItems) FROM Opportunity WHERE Id IN:LineItemIds];
+    /*List<Opportunity> updateBookCount = [SELECT Id, Name, Account.Name, (SELECT Id FROM OpportunityLineItems) FROM Opportunity WHERE Id IN:LineItemIds];
     Map<Id, Account> accToUpdate = new Map<Id, Account>();
     for (Opportunity updateAcc : updateBookCount) {
         Account acc = new Account();
@@ -14,7 +14,7 @@ trigger OpportunityLineItem on OpportunityLineItem (after insert,after update,af
     }
      if (!accToUpdate.isEmpty()) {
         update accToUpdate.values();
-    }
+    }*/
     List<Opportunity> updateOverDue = [SELECT Id, Name, Account.Name, (SELECT Id FROM OpportunityLineItems Where Status__c=:'Overdue') FROM Opportunity WHERE Id IN:LineItemIds];
     Map<Id, Account> accountsToUpdate = new Map<Id, Account>();
     for (Opportunity updateAcc : updateOverDue) {
